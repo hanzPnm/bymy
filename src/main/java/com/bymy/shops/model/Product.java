@@ -1,11 +1,14 @@
 package com.bymy.shops.model;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -25,6 +28,9 @@ public class Product {
 
     @LastModifiedDate
     private Date updatedAt;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<FileModel> pics;
 
     public Long getId() {
         return id;
@@ -81,6 +87,14 @@ public class Product {
     }
 
     public Product() {
+    }
+
+    public List<FileModel> getPics() {
+        return pics;
+    }
+
+    public void setPics(List<FileModel> pics) {
+        this.pics = pics;
     }
     
 }
