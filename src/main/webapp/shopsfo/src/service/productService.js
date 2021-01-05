@@ -3,7 +3,7 @@ import axios from 'axios';
 class ProductService{
 
     fetchProducts() {
-        return axios.get(`https://jsonplaceholder.typicode.com/users`);        
+        return axios.get(`/api/product/products`);        
     }
 }
 export default new ProductService();
