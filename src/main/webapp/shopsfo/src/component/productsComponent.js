@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchAllProducts } from '../action/productAction';
+import { fetchAllProducts, fetchProduct } from '../action/productAction';
 import { Card, Button} from 'react-bootstrap';
+import history from '../history';
 
 class ProductsComponent extends Component {
     constructor(props){
@@ -10,6 +11,9 @@ class ProductsComponent extends Component {
     }
     componentDidMount(){
         this.props.fetchAllProducts();
+    }
+    goToDetail = (id) => {
+        this.props.fetchProduct(id);
     }
 
     render() {
@@ -26,7 +30,7 @@ class ProductsComponent extends Component {
                                 Some quick example text to build on the card title and make up the bulk of
                                 the card's content.
                                 </Card.Text>
-                                <Button variant="primary">Go somewhere</Button>
+                                <Button variant="primary" onClick={()=>{this.goToDetail(item.id)}}>Go somewhere</Button>
                             </Card.Body>
                             </Card>
                     </div>
@@ -38,5 +42,5 @@ class ProductsComponent extends Component {
 
 export default connect(
     (state)=> ({products: state.products.items}),
-    {fetchAllProducts}
+    {fetchAllProducts, fetchProduct}
 )(ProductsComponent);

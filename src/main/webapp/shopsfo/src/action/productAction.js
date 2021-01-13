@@ -1,14 +1,31 @@
 import ProductService from '../service/productService';
-import { FETCH_PRODUCTS } from '../types';
+import { FETCH_PRODUCTS, FETCH_PRODUCT } from '../types';
+import history from '../history';
 
 export const fetchAllProducts = () => (dispatch) => {
    ProductService.fetchProducts().then(
     (res) => {
-        console.log(res.data);
         dispatch({
             type: FETCH_PRODUCTS,
             payload: res.data
         });
+        
+        return Promise.resolve();
+    },
+    (error) => {
+        console.log(error);      
+        return Promise.reject();
+    }
+);
+}
+export const fetchProduct = (id) => (dispatch) => {
+   ProductService.fetchProduct(id).then(
+    (res) => {
+        dispatch({
+            type: FETCH_PRODUCT,
+            payload: res.data
+        });
+        history.push('/product');
         return Promise.resolve();
     },
     (error) => {
