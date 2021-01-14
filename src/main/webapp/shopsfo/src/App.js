@@ -8,6 +8,7 @@ import FooterComponent from './component/footerComponent';
 import AboutComponent from './component/aboutComponent';
 import LoginComponent from './component/loginComponent';
 import ProductDetailComponent from './component/productDetailComponent';
+import CreateProductComponent from './component/CreateProductComponent';
 import { HashRouter } from 'react-router-dom';
 
 class App extends Component{
@@ -26,6 +27,7 @@ class App extends Component{
               <Route path='/about' component={AboutComponent}/>
               <Route path='/login' component={LoginComponent}/>
               <Route path='/product' component={ProductDetailComponent}/>
+              <Route path='/createProduct' component={CreateProductComponent}/>
             </Switch>
           </div>
           <FooterComponent/>

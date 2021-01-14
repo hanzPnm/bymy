@@ -9,8 +9,28 @@ class ProductDetailComponent extends Component {
 
     render() {
         return (
-            <div>article =  
-                {this.props.product && this.props.product.title}
+            <div className="container pt-5">
+                {this.props.product && (
+                    <div className="row">
+                        <div className="col-md-8">
+                            <img src={"data:image/png;base64," + (this.props.product.pics[0] && this.props.product.pics[0].pic)} />
+                        </div>
+                        <div className="col-md-4">
+                            <h1 className="articleTitle pb-3 underline text-capitalize">
+                                {this.props.product.title}    
+                            </h1>
+                            <h5>
+                                $ {this.props.product.price}    
+                            </h5>
+                            <p>
+                                {this.props.product.description} 
+                            </p>
+                            <div className="btn btn-outline-dark col">
+                                ADD TO CART
+                            </div>
+                        </div>   
+                    </div>
+                )}
             </div>
         )
     }

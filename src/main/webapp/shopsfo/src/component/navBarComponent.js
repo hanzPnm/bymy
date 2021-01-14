@@ -23,7 +23,7 @@ export default class NavBarComponent extends Component {
                     <Nav>
                     <Nav.Link href="#about">About</Nav.Link>
                     <Nav.Link href="#login">Login</Nav.Link>
-                    <Nav.Link eventKey={2} href="memes">
+                    <Nav.Link href="#createProduct">
                         Dank memes
                     </Nav.Link>
                     </Nav>

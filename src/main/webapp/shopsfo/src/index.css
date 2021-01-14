@@ -113,3 +113,20 @@ ul.social-network li {
 .social-network a {
   background-color: #F9F9F9;
 }
+
+.underline:after{
+  position: absolute;
+  display: block;
+  content: "";
+  top: auto;
+  right: auto;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 2px;
+  background: #000;
+}
+
+.articleTitle {
+  position: relative;
+}
