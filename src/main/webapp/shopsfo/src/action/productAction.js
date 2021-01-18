@@ -1,5 +1,5 @@
 import ProductService from '../service/productService';
-import { FETCH_PRODUCTS, FETCH_PRODUCT } from '../types';
+import { FETCH_PRODUCTS, FETCH_PRODUCT, CREATE_PRODUCT } from '../types';
 import history from '../history';
 
 export const fetchAllProducts = () => (dispatch) => {
@@ -26,6 +26,22 @@ export const fetchProduct = (id) => (dispatch) => {
             payload: res.data
         });
         history.push('/product');
+        return Promise.resolve();
+    },
+    (error) => {
+        console.log(error);      
+        return Promise.reject();
+    }
+);
+}
+export const createProduct = (product) => (dispatch) => {
+   ProductService.createProduct(product).then(
+    (res) => {
+        dispatch({
+            type: CREATE_PRODUCT,
+            payload: res.data
+        });
+        history.push('/');
         return Promise.resolve();
     },
     (error) => {
