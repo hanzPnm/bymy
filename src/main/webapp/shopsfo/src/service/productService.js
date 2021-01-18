@@ -13,5 +13,8 @@ class ProductService{
     createProduct(product) {
         return axios.post("/api/product/", product, {});        
     }
+    removeProduct(id) {
+        return axios.delete(`/api/product/${id}`);        
+    }
 }
 export default new ProductService();

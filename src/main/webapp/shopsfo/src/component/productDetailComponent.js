@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import { removeProduct} from '../action/productAction';
 class ProductDetailComponent extends Component {
     constructor(props){
         super(props);
@@ -13,6 +13,9 @@ class ProductDetailComponent extends Component {
     }
     showImage = (image) => {
         this.setState({defaultImage: image});
+    }
+    removeProduct = () => {
+        this.props.removeProduct(this.props.product.id);
     }
 
     render() {
@@ -41,6 +44,9 @@ class ProductDetailComponent extends Component {
                             <div className="btn btn-outline-dark col">
                                 ADD TO CART
                             </div>
+                            <div className="btn btn-outline-danger col" onClick={this.removeProduct}>
+                                REMOVE PRODUCT
+                            </div>
                         </div>   
                     </div>
                 )}
@@ -51,5 +57,5 @@ class ProductDetailComponent extends Component {
 
 export default connect(
     (state)=> ({product: state.products.product}),
-    {}
-)(ProductDetailComponent);
+    {removeProduct}
+)(ProductDetailComponent, );
