@@ -4,7 +4,15 @@ import { connect } from 'react-redux';
 class ProductDetailComponent extends Component {
     constructor(props){
         super(props);
-        this.state={}
+        this.state={defaultImage:''}
+    }
+
+    componentDidMount(){
+        const image = this.props.product? this.props.product.pics[0] :  null;
+        this.setState({defaultImage: image});
+    }
+    showImage = (image) => {
+        this.setState({defaultImage: image});
     }
 
     render() {
@@ -12,8 +20,13 @@ class ProductDetailComponent extends Component {
             <div className="container pt-5">
                 {this.props.product && (
                     <div className="row">
-                        <div className="col-md-8">
-                            <img src={"data:image/png;base64," + (this.props.product.pics[0] && this.props.product.pics[0].pic)} />
+                        <div className="col-md-7">
+                            <img className="img-fluid" src={"data:image/png;base64," + this.state.defaultImage.pic} />
+                        </div>
+                        <div className="col-md-1">
+                        {this.props.product.pics.map(ele =>
+                            <img className="img-fluid p-1" src={"data:image/png;base64," + ele.pic} onClick={()=> this.showImage(ele)}/>
+                        )}
                         </div>
                         <div className="col-md-4">
                             <h1 className="articleTitle pb-3 underline text-capitalize">
