@@ -24,7 +24,7 @@ export default class NavBarComponent extends Component {
                     <Nav.Link href="#about">About</Nav.Link>
                     <Nav.Link href="#login">Login</Nav.Link>
                     <Nav.Link href="#createProduct">
-                        Dank memes
+                        Create product
                     </Nav.Link>
                     </Nav>
                 </Navbar.Collapse>

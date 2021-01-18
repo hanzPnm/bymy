@@ -21,7 +21,7 @@ class ProductDetailComponent extends Component {
                 {this.props.product && (
                     <div className="row">
                         <div className="col-md-7">
-                            <img className="img-fluid" src={"data:image/png;base64," + this.state.defaultImage.pic} />
+                            <img className="img-fluid" src={"data:image/png;base64," + (this.state.defaultImage && this.state.defaultImage.pic)} />
                         </div>
                         <div className="col-md-1">
                         {this.props.product.pics.map(ele =>
