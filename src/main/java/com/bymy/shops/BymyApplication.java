@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 import javax.annotation.PostConstruct;
 
+import com.bymy.shops.model.CustomRole;
 import com.bymy.shops.model.CustomUser;
 import com.bymy.shops.repository.UserRepository;
 
@@ -27,9 +28,9 @@ public class BymyApplication {
 	public void initUsers(){
 		if(userRepository.count()==0){			
 			List<CustomUser> users = Stream.of(
-				new CustomUser(101,"admin",passwordEncoder.encode("admin"),"admin@gmail.com"),
-				new CustomUser(102,"manager","manager","manager@gmail.com"),
-				new CustomUser(103,"user","user","user@gmail.com")
+				new CustomUser(101,"admin",passwordEncoder.encode("admin"),"admin@gmail.com",CustomRole.ADMIN),
+				new CustomUser(102,"manager",passwordEncoder.encode("manager"),"manager@gmail.com",CustomRole.MANAGER),
+				new CustomUser(103,"user",passwordEncoder.encode("user"),"user@gmail.com",CustomRole.USER)
 				).collect(Collectors.toList());
 			userRepository.saveAll(users);
 		}
