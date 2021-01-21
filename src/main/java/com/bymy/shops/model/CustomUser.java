@@ -26,14 +26,21 @@ public class CustomUser {
 
     @Column
     private String userName;
-
+    
+    @Column
     @JsonIgnore
     private String password;
-
+    
     @Column
     private String email;
-
+    
+    @Column
     @Enumerated(EnumType.STRING)
     private CustomRole role;
+
+    public CustomUser(String userName, String email) {
+        this.userName = userName;
+        this.email = email;
+    }
     
 }
