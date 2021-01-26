@@ -41,12 +41,14 @@ class ProductDetailComponent extends Component {
                             <p>
                                 {this.props.product.description} 
                             </p>
-                            <div className="btn btn-outline-dark col">
+                            <div className="btn btn-outline-dark col m-1">
                                 ADD TO CART
                             </div>
-                            <div className="btn btn-outline-danger col" onClick={this.removeProduct}>
-                                REMOVE PRODUCT
-                            </div>
+                            {this.props.login !== undefined && this.props.login.role ==='[ROLE_ADMIN]' && (
+                                <div className="btn btn-outline-danger col m-1" onClick={this.removeProduct}>
+                                    REMOVE PRODUCT
+                                </div>
+                            )}
                         </div>   
                     </div>
                 )}
@@ -56,6 +58,6 @@ class ProductDetailComponent extends Component {
 }
 
 export default connect(
-    (state)=> ({product: state.products.product}),
+    (state)=> ({product: state.products.product,login: state.login.login}),
     {removeProduct}
 )(ProductDetailComponent, );
