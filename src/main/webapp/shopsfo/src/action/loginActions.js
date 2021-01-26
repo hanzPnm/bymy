@@ -1,16 +1,15 @@
 import UserService from '../service/userService';
-import { LOGIN } from '../types';
+import { LOGIN, LOGOUT } from '../types';
 import history from '../history';
 
 export const login = (cred) => (dispatch) => {
     UserService.login(cred).then(
     (res) => {
-        console.log(getUserFromToken(res.data.accessToken));
         dispatch({
             type: LOGIN,
-            payload: res.data
+            payload: getUserFromToken(res.data.accessToken)
         });
-        //history.push('/');
+        history.push('/');
         return Promise.resolve();
     },
     (error) => {
@@ -18,6 +17,12 @@ export const login = (cred) => (dispatch) => {
         return Promise.reject();
     }
 );
+}
+export const logout = () => (dispatch) => {
+        dispatch({
+            type: LOGOUT
+        });
+        //history.push('/');
 }
 
 const getUserFromToken = token => {
