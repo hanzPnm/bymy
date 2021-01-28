@@ -25,12 +25,12 @@ class ProductsComponent extends Component {
                         <Card style={{ width: '18rem' }}>
                             <Card.Img variant="top" src={"data:image/png;base64," + (item.pics[0] && item.pics[0].pic)} />
                             <Card.Body>
-                                <Card.Title>Card Title</Card.Title>
+                                <Card.Title>{item.title}</Card.Title>
                                 <Card.Text>
-                                Some quick example text to build on the card title and make up the bulk of
-                                the card's content.
+                                    {item.description}
                                 </Card.Text>
-                                <Button variant="primary" onClick={()=>{this.goToDetail(item.id)}}>Go somewhere</Button>
+                                <Card.Title>$ {item.price}</Card.Title>
+                                <Button variant="btn btn-outline-dark col m-1" onClick={()=>{this.goToDetail(item.id)}}>Go somewhere</Button>
                             </Card.Body>
                             </Card>
                     </div>

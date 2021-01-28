@@ -20,8 +20,8 @@ class CreateProductComponent extends Component {
             data.append('files',ele)
         });
         data.append('price',this.state.price);
-        data.append('files',this.state.title);
-        data.append('files',this.state.description);
+        data.append('title',this.state.title);
+        data.append('description',this.state.description);
         this.props.createProduct(data);
     }
 

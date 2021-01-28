@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.Validator;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
@@ -41,28 +42,31 @@ public class ProductService {
         product.setTitle(title);
         product.setDescription(description);
         product.setPrice(price);
-        List<FileModel> listPics = fileModelList.stream()
-        .filter(ele -> !ele.getOriginalFilename().isEmpty())
-        .map(ele -> {
-            FileModel f = new FileModel();
-            f.setName(ele.getOriginalFilename());
-            f.setType(ele.getContentType());
-            try {
-                f.setPic(ele.getBytes());
-            } catch (IOException e) {
-                log.error(e.getMessage());
-            }
-            f.setProduct(product);
-            return f;
-        })
-        .collect(Collectors.toList());
-       if(!listPics.isEmpty()){
-           if(product.getPics()!= null){
-               product.getPics().clear();
-               product.getPics().addAll(listPics);
-            }
-            else{
-                product.setPics(listPics);
+        if( null != fileModelList && !fileModelList.isEmpty()){
+            List<FileModel> listPics = fileModelList.stream()
+            .filter(ele -> !ele.getOriginalFilename().isEmpty())
+            .map(ele -> {
+                FileModel f = new FileModel();
+                f.setName(ele.getOriginalFilename());
+                f.setType(ele.getContentType());
+                try {
+                    f.setPic(ele.getBytes());
+                } catch (IOException e) {
+                    log.error(e.getMessage());
+                }
+                f.setProduct(product);
+                return f;
+            })
+            .collect(Collectors.toList());
+        
+            if(!listPics.isEmpty()){
+                if(product.getPics()!= null){
+                    product.getPics().clear();
+                    product.getPics().addAll(listPics);
+                }
+                else{
+                    product.setPics(listPics);
+                }
             }
         }
         return productRepository.save(product);

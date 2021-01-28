@@ -39,16 +39,16 @@ public class ProductController {
             @RequestParam(defaultValue = "defaultValue") String title,
             @RequestParam(defaultValue = "defaultValue") String description,
             @RequestParam(defaultValue = "100") Long price,
-            @RequestParam("files") List<MultipartFile> files ) {
+            @RequestParam(value = "files", required=false) List<MultipartFile> files ) {
         return productService.insertOrUpdate(0L, title, description, price, files);
     }
 
     @PutMapping(value = "/", produces = "application/json")
     public @ResponseBody Product updateProduct(@RequestParam Long id,
-            @RequestParam(defaultValue = "defaultValue") String title ,
-            @RequestParam(defaultValue = "defaultValue") String description,
+            @RequestParam(defaultValue = "defaul title") String title ,
+            @RequestParam(defaultValue = "defaul description") String description,
             @RequestParam(defaultValue = "100") Long price,
-            @RequestParam("files") List<MultipartFile> files) {
+            @RequestParam(value = "files", required=false) List<MultipartFile> files) {
                 return productService.insertOrUpdate(id, title, description, price, files);
     }
     @DeleteMapping(value = "/{id}")

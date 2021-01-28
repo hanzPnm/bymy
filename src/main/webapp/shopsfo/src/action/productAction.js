@@ -1,5 +1,5 @@
 import ProductService from '../service/productService';
-import { FETCH_PRODUCTS, FETCH_PRODUCT, CREATE_PRODUCT, REMOVE_PRODUCT } from '../types';
+import { FETCH_PRODUCTS, FETCH_PRODUCT, CREATE_PRODUCT, REMOVE_PRODUCT, UPDATE_PRODUCT } from '../types';
 import history from '../history';
 
 export const fetchAllProducts = () => (dispatch) => {
@@ -64,4 +64,20 @@ export const createProduct = (product) => (dispatch) => {
         return Promise.reject();
     }
 );
+}
+export const updateProduct = (product) => async (dispatch) => {    
+    await ProductService.updateProduct(product).then(
+        (res) => {
+            dispatch({
+                type: UPDATE_PRODUCT,
+                payload: res.data
+            });
+            //history.push('/');
+            return Promise.resolve();
+        },
+        (error) => {
+            console.log(error);      
+            return Promise.reject();
+        }
+    );
 }
